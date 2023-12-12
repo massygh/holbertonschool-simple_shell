@@ -1,0 +1,67 @@
+.TH SIMPLE_SHELL 1 "2023-12-12" "1.0" "Simple Shell Manual"
+
+.SH NAME
+simple_shell \- a simple UNIX shell
+
+.SH SYNOPSIS
+.B simple_shell
+
+.SH DESCRIPTION
+.PP
+The \fBsimple_shell\fP command is a basic UNIX shell that allows users to interactively execute commands.
+
+.SH USAGE
+.PP
+.B simple_shell
+
+.SH COMMANDS
+.PP
+The shell supports the execution of basic commands and can handle command line arguments.
+
+.SH BUILT-IN COMMANDS
+.PP
+The following built-in commands are supported:
+.TP
+.B exit
+Exit the shell.
+.TP
+.B env
+Display the current environment.
+
+.SH OPTIONS
+.PP
+None
+
+.SH EXIT STATUS
+.PP
+The shell returns the following exit statuses:
+.TP
+.B 0
+Successful execution.
+.TP
+.B 1
+Command not found or error.
+
+.SH EXAMPLES
+.PP
+To start the shell:
+.EX
+$ simple_shell
+.PP
+To execute a command:
+.EX
+$ /bin/ls
+file1 file2 file3
+.PP
+To exit the shell:
+.EX
+$ exit
+
+.SH AUTHORS
+.PP
+This manual page was written by [Massinissa Ghendous & Samy Ajouid].
+
+.SH SEE ALSO
+.PP
+.BR bash (1),
+.BR sh (1)
