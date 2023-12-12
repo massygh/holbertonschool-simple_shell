@@ -1,38 +1,38 @@
-# Projet de Shell Simple
+# Simple Shell Project
 
-## Présentation
+## Overview
 
-Ce projet vise à créer un shell simple reproduisant les fonctionnalités de base du shell Unix. Le shell est conçu pour exécuter des commandes, gérer des processus et gérer la redirection des entrées/sorties.
+This project aims to create a simple shell that emulates the basic functionalities of the Unix shell. The shell is designed to execute commands, manage processes, and handle I/O redirection.
 
-## Tâches du Projet
+## Project Tasks
 
 ### 0. README, man, AUTHORS
-- **Fichiers :**
-    - `README.md` : Aperçu, compilation, tests et détails de soumission.
-    - `man_1_simple_shell` : Page de manuel pour le shell.
-    - `AUTHORS` : Liste des contributeurs.
+- **Files:**
+    - `README.md`: Overview, compilation, testing, and submission details.
+    - `man_1_simple_shell`: Manual page for the shell.
+    - `AUTHORS`: List of contributors.
 
-### 1. Betty serait fière
-- **Description :** Écrire un code qui réussit les vérifications de style Betty.
-- **Fichiers :**
-    - Fichiers de code à écrire en suivant le style Betty.
+### 1. Betty would be proud
+- **Description:** Write code that passes the Betty checks.
+- **Files:**
+    - Code files to be written following Betty style.
 
 ### 2. Simple shell 0.1
-- **Description :** Écrire un interpréteur de ligne de commande UNIX.
-- **Usage :** `simple_shell`
-- **Fonctionnalités :**
-    - Afficher une invite et attendre que l'utilisateur saisisse une commande.
-    - L'invite est affichée à nouveau après chaque exécution de commande.
-    - Les lignes de commande sont simples, sans fonctionnalités avancées.
-    - Gérer les erreurs et la condition de "fin de fichier".
-    - Une exécution non trouvée résulte en un message d'erreur.
+- **Description:** Write a UNIX command line interpreter.
+- **Usage:** `simple_shell`
+- **Features:**
+    - Display a prompt and wait for the user to type a command.
+    - The prompt is displayed again after each command execution.
+    - Command lines are simple, no advanced features.
+    - Handle errors and "end of file" condition.
+    - Executable not found results in an error message.
 
 ### 3. Simple shell 0.2
-- **Description :** Améliorer le shell pour gérer les lignes de commande avec des arguments.
+- **Description:** Enhance the shell to handle command lines with arguments.
 
 ### 4. Simple shell 0.3
-- **Description :** Étendre le shell pour gérer le PATH et éviter les appels inutiles à `fork`.
-- **Exemples :**
+- **Description:** Extend the shell to handle the PATH and avoid unnecessary `fork` calls.
+- **Examples:**
     ```bash
     $ ./shell_0.3
     :) /bin/ls
@@ -41,12 +41,12 @@ Ce projet vise à créer un shell simple reproduisant les fonctionnalités de ba
     ```
 
 ### 5. Simple shell 0.4
-- **Description :** Implémenter la commande intégrée `exit` qui quitte le shell.
-- **Usage :** `exit`
+- **Description:** Implement the `exit` built-in that exits the shell.
+- **Usage:** `exit`
 
 ### 6. Simple shell 1.0
-- **Description :** Implémenter la commande intégrée `env` qui affiche l'environnement courant.
-- **Exemple :**
+- **Description:** Implement the `env` built-in that prints the current environment.
+- **Example:**
     ```bash
     $ ./simple_shell
     $ env
@@ -55,28 +55,28 @@ Ce projet vise à créer un shell simple reproduisant les fonctionnalités de ba
     ...
     ```
 
-## Exigences
+## Requirements
 
-### Générales
-- **Éditeurs autorisés :** vi, vim, emacs
-- **Compilation :** `gcc -Wall -Werror -Wextra -pedantic -std=gnu89 *.c -o hsh`
-- **Style de codage :** Le code doit suivre le style Betty et être vérifié avec `betty-style.pl` et `betty-doc.pl`.
-- **Gestion de la mémoire :** Assurer l'absence de fuites mémoire.
-- **Fonctions par fichier :** Pas plus de 5 fonctions par fichier.
-- **Fichiers d'en-tête :** Gardes d'inclusion dans les fichiers d'en-tête.
-- **Appels système :** Utiliser les appels système uniquement lorsque nécessaire.
+### General
+- **Allowed Editors:** vi, vim, emacs
+- **Compilation:** `gcc -Wall -Werror -Wextra -pedantic -std=gnu89 *.c -o hsh`
+- **Coding Style:** Code should use the Betty style and be checked using `betty-style.pl` and `betty-doc.pl`.
+- **Memory Management:** Ensure no memory leaks.
+- **Functions per File:** No more than 5 functions per file.
+- **Header Files:** Include guards in header files.
+- **System Calls:** Use system calls only when necessary.
 
 ### GitHub
-- Un dépôt de projet par groupe.
-- Éviter de cloner/forker un dépôt de projet avec le même nom avant la deuxième date limite pour éviter un score de 0%.
+- One project repository per group.
+- Avoid cloning/forking a project repository with the same name before the second deadline to prevent a 0% score.
 
-## Compilation et Tests
+## Compilation and Testing
 
 ### Compilation
 ```bash
 $ gcc -Wall -Werror -Wextra -pedantic -std=gnu89 *.c -o hsh
-Tests
-Mode interactif
+Testing
+Interactive Mode
 bash
 Copy code
 $ ./hsh
@@ -85,17 +85,17 @@ hsh main.c shell.c
 ($)
 ($) exit
 $
-Mode non interactif
+Non-Interactive Mode
 bash
 Copy code
 $ echo "/bin/ls" | ./hsh
 hsh main.c shell.c test_ls_2
-Informations supplémentaires
-Sortie : Identique à /bin/sh.
-Format d'erreur :
+Additional Information
+Output: Same as /bin/sh.
+Error Format:
 bash
 Copy code
 $ echo "qwerty" | ./hsh
 ./hsh: 1: qwerty: not found
-Documentation : Commentaires détaillés dans le code.
-Collaboration : Encouragée, mais chaque étudiant doit avoir son propre dépôt GitHub.
+Documentation: Detailed comments in code.
+Collaboration: Encouraged, but each student should have their own GitHub repository.
