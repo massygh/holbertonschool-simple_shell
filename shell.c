@@ -1,61 +1,29 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <unistd.h>
-#include <sys/types.h>
-#include <sys/wait.h>
+#include <string.h>
+#include "shell.h"
 
-#define BUFFER_SIZE 1024
-
-/**
- * display_prompt - Display the shell prompt
- */
-void display_prompt(void)
-{
-	printf("#cisfun$ ");
-}
-
-/**
- * main - Entry point of the shell
- * Return: EXIT_SUCCESS on success, otherwise EXIT_FAILURE
- */
 int main(void)
 {
-	char buffer[BUFFER_SIZE];
-
+	char input[100];
 	while (1)
 	{
 		display_prompt();
+		fgets(input, sizeof(input), stdin);
+		input[strcspn(input, "\n")] = '\0';  // Supprimer le saut de ligne
 
-		if (fgets(buffer, sizeof(buffer), stdin) == NULL)
+		if (strcmp(input, "exit") == 0)
 		{
-			printf("\n");
-			break;
+			exit_shell();
 		}
-
-		buffer[strcspn(buffer, "\n")] = '\0';
-
-		pid_t pid = fork();
-
-		if (pid == -1)
+		else if (strcmp(input, "env") == 0)
 		{
-			perror("Error forking process");
-			exit(EXIT_FAILURE);
-		}
-		else if (pid == 0)
-		{
-			if (execlp(buffer, buffer, NULL) == -1)
-			{
-				fprintf(stderr, "./shell: No such file or directory\n");
-				exit(EXIT_FAILURE);
-			}
+			env_shell();
 		}
 		else
 		{
-			int status;
-			waitpid(pid, &status, 0);
+			execute_command(input);
 		}
 	}
-
-	return EXIT_SUCCESS;
+	return (0);
 }
-
