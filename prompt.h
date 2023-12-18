@@ -3,6 +3,6 @@
 
 #include <stdio.h>
 
-void display_prompt();
+void display_prompt(void);
 
 #endif /* PROMPT_H */
