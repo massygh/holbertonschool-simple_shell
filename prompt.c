@@ -1,12 +1,10 @@
-#include <stdio.h>
 #include "shell.h"
 
 /**
- * print_prompt - variable
+ * printPrompt - fonction
  */
 
-void print_prompt(void)
+void printPrompt(void)
 {
-	printf("#cisfun$ ");
-	fflush(stdout);
+	printf("♥ ");
 }

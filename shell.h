@@ -3,20 +3,23 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdbool.h>
 #include <unistd.h>
-#include <sys/types.h>
-#include <sys/wait.h>
 #include <string.h>
-
-#define MAX_COMMAND_LENGTH 100
-#define MAX_ARGUMENTS 10
+#include <sys/wait.h>
+#include <sys/stat.h>
 
 extern char **environ;
+#define BUFSIZE 1024
+#define SPACE ' '
+#define TAB '\t'
 
-void run_shell(void);
-void execute_command(const char *command);
-void print_environment(void);
-void print_prompt(void);
-void create_arguments(char *command, char *args[MAX_ARGUMENTS]);
+int countTokens(char *line);
+void printPrompt(void);
+void freeMemory(char **tokens, size_t count_token);
+char **parseInputLine(char *line);
+void executeCommand(char **args);
+char *getPath(char *file);
+char *getEnv(char *name);
 
-#endif /* SHELL_H */
+#endif
