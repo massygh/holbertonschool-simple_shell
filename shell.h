@@ -9,8 +9,12 @@
 #include <string.h>
 
 #define MAX_COMMAND_LENGTH 100
-#define MAX_ARGUMENTS 10 // Ajoutez cette ligne pour déclarer MAX_ARGUMENTS
+#define MAX_ARGUMENTS 10
 
-void run_shell();
+extern char **environ;
+
+void run_shell(void);
+void execute_command(const char *command);
+void print_environment(void);
 
 #endif /* SHELL_H */
