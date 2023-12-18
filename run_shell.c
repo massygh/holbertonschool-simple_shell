@@ -2,8 +2,9 @@
 #include "prompt.h"
 
 /**
- * @brief Main loop for the shell.
+ * run_shell - variable
  */
+
 void run_shell(void)
 {
 	char command[MAX_COMMAND_LENGTH];
@@ -25,7 +26,6 @@ void run_shell(void)
 			printf("Shell exiting.\n");
 			break;
 		}
-
 		if (strcmp(command, "env") == 0)
 		{
 			print_environment();
@@ -37,9 +37,7 @@ void run_shell(void)
 			printf("./shell: No such file or directory\n");
 			continue;
 		}
-
 		execute_command(command);
 	}
-
 	printf("Shell exiting.\n");
 }

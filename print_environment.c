@@ -1,7 +1,7 @@
 #include "shell.h"
 
 /**
- * @brief Print the current environment variables.
+ * print_environment - fonctions
  */
 void print_environment(void)
 {

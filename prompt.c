@@ -1,7 +1,11 @@
 #include <stdio.h>
 #include "shell.h"
 
-void display_prompt()
+/**
+ * display_prompt - variable
+ */
+
+void display_prompt(void)
 {
-    printf("#cisfun$ ");
+	printf("#cisfun$ ");
 }
