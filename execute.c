@@ -4,7 +4,7 @@
  * @args: array of arguments -> command and arguments
  * Return: 0 in success or EXIT_FAILIURE
  */
-void executeCommand(char **args);
+int execute(char **args)
 {
 	char *path_cmd = NULL;
 	pid_t child_pid;

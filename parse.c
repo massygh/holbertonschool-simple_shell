@@ -22,11 +22,11 @@ int countTokens(char *line)
 }
 
 /**
- * parseInputLine - splits a string into words (tokens)
+ * parseLine - splits a string into words (tokens)
  * @line: the string to be splitted
  * Return: an array of strings (each word of the line string) or NULL
  */
-char **parseInputLine(char *line)
+char **parseLine(char *line)
 {
 	char *copy_line = strdup(line);
 	char *token = strtok(copy_line, " \t\r\n\a");
