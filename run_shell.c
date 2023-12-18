@@ -7,37 +7,34 @@
 
 void run_shell(void)
 {
-	char command[MAX_COMMAND_LENGTH];
+	char *user_input = NULL;
+	size_t len = 0;
 
 	while (1)
 	{
-		display_prompt();
+		print_prompt();
 
-		if (fgets(command, sizeof(command), stdin) == NULL)
+		if (getline(&user_input, &len, stdin) == -1)
 		{
-			printf("\n");
-			break;
+			if (feof(stdin))
+			{
+				printf("\n");
+				break;
+			}
+			perror("Error reading input");
+			exit(EXIT_FAILURE);
 		}
 
-		command[strcspn(command, "\n")] = '\0';
+		user_input[strcspn(user_input, "\n")] = '\0';
 
-		if (strcmp(command, "exit") == 0)
+		if (strcmp(user_input, "exit") == 0)
 		{
-			printf("Shell exiting.\n");
-			break;
-		}
-		if (strcmp(command, "env") == 0)
-		{
-			print_environment();
-			continue;
+			free(user_input);
+			exit(EXIT_SUCCESS);
 		}
 
-		if (access(command, F_OK) != 0)
-		{
-			printf("./shell: No such file or directory\n");
-			continue;
-		}
-		execute_command(command);
+		execute_command(user_input);
 	}
-	printf("Shell exiting.\n");
+
+	free(user_input);
 }

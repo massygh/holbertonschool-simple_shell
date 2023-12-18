@@ -2,10 +2,11 @@
 #include "shell.h"
 
 /**
- * display_prompt - variable
+ * print_prompt - variable
  */
 
-void display_prompt(void)
+void print_prompt(void)
 {
 	printf("#cisfun$ ");
+	fflush(stdout);
 }

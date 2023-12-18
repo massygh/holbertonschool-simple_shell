@@ -16,5 +16,6 @@ extern char **environ;
 void run_shell(void);
 void execute_command(const char *command);
 void print_environment(void);
+void print_prompt(void);
 
 #endif /* SHELL_H */
