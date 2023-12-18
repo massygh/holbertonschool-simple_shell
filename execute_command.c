@@ -12,6 +12,7 @@ void execute_command(const char *command)
 	char *args[MAX_ARGUMENTS];
 
 	pid_t pid = fork();
+
 	if (pid == -1)
 	{
 		perror("Fork failed");
@@ -22,8 +23,9 @@ void execute_command(const char *command)
 	{
 		create_arguments(command_copy, args);
 
-		char *full_path = "/bin/";  // Vous pouvez ajuster le chemin en fonction de votre système
+		char *full_path = "/bin/";
 		char full_command[256];
+
 		snprintf(full_command, sizeof(full_command), "%s%s", full_path, args[0]);
 
 		if (execve(full_command, args, environ) == -1)
@@ -37,12 +39,10 @@ void execute_command(const char *command)
 	{
 		waitpid(pid, &status, 0);
 		if (WIFEXITED(status))
-		{
-			printf("Child process exited with status %d\n", WEXITSTATUS(status));
+		{	printf("Child process exited with status %d\n", WEXITSTATUS(status));
 		}
 		else if (WIFSIGNALED(status))
-		{
-			printf("Child process terminated by signal %d\n", WTERMSIG(status));
+		{	printf("Child process terminated by signal %d\n", WTERMSIG(status));
 		}
 	}
 	free(command_copy);
