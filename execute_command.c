@@ -8,9 +8,9 @@
 void execute_command(const char *command)
 {
 	char *command_copy = strdup(command);
-	int status;
 	char *args[MAX_ARGUMENTS];
 	char *full_path;
+	int status;
 	char full_command[256];
 
 	pid_t pid = fork();
@@ -38,14 +38,7 @@ void execute_command(const char *command)
 	else
 	{
 		waitpid(pid, &status, 0);
-		if (WIFEXITED(status))
-		{
-			printf("Child process exited with status %d\n", WEXITSTATUS(status));
-		}
-		else if (WIFSIGNALED(status))
-		{
-			printf("Child process terminated by signal %d\n", WTERMSIG(status));
-		}
 	}
+
 	free(command_copy);
 }
