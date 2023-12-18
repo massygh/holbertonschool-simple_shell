@@ -17,5 +17,6 @@ void run_shell(void);
 void execute_command(const char *command);
 void print_environment(void);
 void print_prompt(void);
+void create_arguments(char *command, char *args[MAX_ARGUMENTS]);
 
 #endif /* SHELL_H */
