@@ -9,16 +9,21 @@ void run_shell(void)
 {
 	char *user_input = NULL;
 	size_t len = 0;
+	ssize_t read;
 
 	while (1)
 	{
-		print_prompt();
+		if (isatty(STDIN_FILENO))
+			print_prompt();
 
-		if (getline(&user_input, &len, stdin) == -1)
+		read = getline(&user_input, &len, stdin);
+
+		if (read == -1)
 		{
 			if (feof(stdin))
 			{
-				printf("\n");
+				if (isatty(STDIN_FILENO))
+					printf("\n");
 				break;
 			}
 			perror("Error reading input");
