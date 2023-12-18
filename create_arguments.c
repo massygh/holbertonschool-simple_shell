@@ -1,5 +1,11 @@
 #include "shell.h"
 
+/**
+ * create_arguments - variable
+ * @command: vara
+ * @args: var 2
+ */
+
 void create_arguments(char *command, char *args[MAX_ARGUMENTS])
 {
 	int i = 0;
