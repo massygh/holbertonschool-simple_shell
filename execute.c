@@ -2,11 +2,10 @@
 /**
  * execute - execute the command
  * @args: array of arguments -> command and arguments
- * Return: 0 in success or EXIT_FAILIURE
+ * Return: 0 in success or EXIT_FAILURE
  */
 int execute(char **args)
-{
-	char *path_cmd = NULL;
+{	char *path_cmd = NULL;
 	pid_t child_pid;
 	int child_status;
 
@@ -26,7 +25,9 @@ int execute(char **args)
 	}
 	path_cmd = getPath(args[0]);
 	if (path_cmd == NULL)
-	{	fprintf(stderr, "hsh: command not found: %s\n", args[0]);
+		return (-1);
+	if (access(path_cmd, X_OK) == -1)
+	{	free(path_cmd);
 		return (-1);
 	}
 	child_pid = fork();
@@ -42,8 +43,7 @@ int execute(char **args)
 		exit(EXIT_FAILURE);
 	}
 	else
-	{	waitpid(child_pid, &child_status, 0);
-	}
+		waitpid(child_pid, &child_status, 0);
 	free(path_cmd);
 	return (0);
 }
