@@ -11,6 +11,7 @@ char *getPath(char *file)
 	char *path = NULL;          /* to store the path */
 	char *file_path = NULL;     /* to store the file path */
 	char *path_env = getEnv("PATH"); /* get the PATH environ variable */
+	struct stat file_info;
 
 	if (!path_env) /* if getEnv fails or path is NULL */
 		return (NULL);
@@ -27,9 +28,6 @@ char *getPath(char *file)
 		file_path = malloc(sizeof(char) * (strlen(path) + strlen(file) + 2));
 		/* concatenate the path with the file name using sprintf and / to separate */
 		sprintf(file_path, "%s/%s", path, file);
-
-		/* check if the file exists and is executable */
-		struct stat file_info;
 
 		if (file_path != NULL && stat(file_path, &file_info) == 0
 				&& S_ISREG(file_info.st_mode) && (file_info.st_mode & S_IXUSR))
