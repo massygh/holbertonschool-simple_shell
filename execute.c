@@ -1,6 +1,6 @@
 #include "shell.h"
 /**
- * executeCommand - execute the command
+ * execute - execute the command
  * @args: array of arguments -> command and arguments
  * Return: 0 in success or EXIT_FAILIURE
  */
@@ -26,22 +26,24 @@ int execute(char **args)
 	}
 	path_cmd = getPath(args[0]);
 	if (path_cmd == NULL)
+	{	fprintf(stderr, "hsh: command not found: %s\n", args[0]);
 		return (-1);
+	}
 	child_pid = fork();
 	if (child_pid == -1)
-	{
-		perror("Error ; fork failed");
+	{	perror("Error: fork failed");
 		free(path_cmd);
 		return (-1);
 	}
 	else if (child_pid == 0)
 	{
 		if (execve(path_cmd, args, environ) == -1)
-			perror("Error ; execve failed");
+			perror("Error: execve failed");
 		exit(EXIT_FAILURE);
 	}
 	else
-		waitpid(child_pid, &child_status, 0);
+	{	waitpid(child_pid, &child_status, 0);
+	}
 	free(path_cmd);
 	return (0);
 }

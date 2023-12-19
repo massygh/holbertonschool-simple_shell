@@ -10,6 +10,7 @@ char **parseLine(char *line)
 	char *delimiters = " \t\r\n\a";
 	char **tokens = NULL;
 	int count_token = 0, i = 0;
+
 	copy_line = strdup(line);
 	if (!copy_line)
 		return (NULL);
@@ -31,8 +32,7 @@ char **parseLine(char *line)
 	}
 	token = strtok(copy_line, delimiters);
 	while (token)
-	{
-		tokens[i] = strdup(token);
+	{	tokens[i] = strdup(token);
 		if (!tokens[i])
 		{
 			free(tokens);

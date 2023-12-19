@@ -1,5 +1,4 @@
 #include "shell.h"
-
 /**
  * getPath - search for the file in the PATH
  * @file: the file to search for in the PATH
@@ -12,34 +11,37 @@ char *getPath(char *file)
 	char *path_env = NULL;
 	struct stat file_info;
 	int i;
+	char *token = strtok(path_env, ":");
 
-	for (i = 0; file[i] != '\0'; i++) /* loop to go through the file name */
+	for (i = 0; file[i] != '\0'; i++)
 	{
-		if (file[i] == '/' || file[i] == '.') /* if contains '/' or '.' = PATH */
+		if (file[i] == '/' || file[i] == '.')
 		{
-			if (stat(file, &file_info) == 0) /* check if file exists */
-				return (strdup(file)); /* return a copy of the file */
-			return (NULL); /* or return NULL if not found */
+			if (stat(file, &file_info) == 0)
+				return (strdup(file));
+			return (NULL);
 		}
 	}
-	path = getEnv("PATH"); /* get the PATH environ variable */
-	if (!path) /* if getEnv fails or path is NULL */
+	path = getEnv("PATH");
+	if (!path)
 		return (NULL);
-	path_env = strdup(path); /* duplicate the PATH env variable and store it */
-	if (path_env == NULL) /* if strdup (duplicate) fails */
+	path_env = strdup(path);
+	if (path_env == NULL)
 		return (NULL);
-	path = strtok(path_env, ":"); /* split the PATH env variable using ':' */
-	while (path) /* loop through the PATH as long as it's not NULL */
+	while (token)
 	{
-		file_path = malloc(sizeof(char) * (strlen(path) + strlen(file) + 2));
-		sprintf(file_path, "%s/%s", path, file);
-		if (file_path != NULL && stat(file_path, &file_info) == 0)
-		{
-			free(path_env); /* if file exists or file_path is NULL free path_env */
-			return (file_path); /* return the file path */
+		file_path = malloc(strlen(token) + strlen(file) + 2);
+		if (file_path == NULL)
+		{	free(path_env);
+			return (NULL);
 		}
-		path = strtok(NULL, ":");
-		free(file_path); /* free the file */
+		sprintf(file_path, "%s/%s", token, file);
+		if (stat(file_path, &file_info) == 0)
+		{	free(path_env);
+			return (file_path);
+		}
+		free(file_path);
+		token = strtok(NULL, ":");
 	}
 	free(path_env);
 	return (NULL);
