@@ -98,4 +98,3 @@ Copy code
 $ echo "qwerty" | ./hsh
 ./hsh: 1: qwerty: not found
 Documentation: Detailed comments in code.
-Collaboration: Encouraged, but each student should have their own GitHub repository.
