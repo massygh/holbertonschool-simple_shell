@@ -1,11 +1,8 @@
 #include "main.h"
-
 /**
  * executable - Execute a file if it has executable permissions
- *
  * @argv: Path to the executable file
  * @input: Input put by the user of this shell
- *
  * Return: no return, void function
  */
 
@@ -21,7 +18,6 @@ void executable(char *argv[], char *input)
 		free(argv[0]);
 		exit(127);
 	}
-
 	child = fork();
 	if (child == -1)
 	{
@@ -31,16 +27,13 @@ void executable(char *argv[], char *input)
 	else if (child == 0)
 	{
 		execve(argv[0], argv, environ);
-
 		perror("Execve Failed");
-
 		free(argv[0]);
 		exit(0);
 	}
-	else 
+	else
 	{
 		wait(&status);
-
 		if (WIFEXITED(status))
 		{
 			status_exit = WEXITSTATUS(status);
@@ -54,4 +47,3 @@ void executable(char *argv[], char *input)
 		}
 	}
 }
-
