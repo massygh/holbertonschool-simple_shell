@@ -22,6 +22,7 @@ void executable(char *argv[], char *input)
 		free(argv[0]);
 		exit(127);
 	}
+	// Create a child process
 	child = fork();
 
 	if (child == -1)
@@ -31,15 +32,19 @@ void executable(char *argv[], char *input)
 	}
 	else if (child == 0)
 	{
+		// Replace the child process image with the new command
 		execve(argv[0], argv, environ);
 		free(argv[0]);
 		exit(0);
 	}
 	else
 	{
+		// Code executed in the parent process
+
 		wait(&status);
 		if (WIFEXITED(status))
 		{
+			// Retrieve the exit status of the child process
 			status_exit = WEXITSTATUS(status);
 			if (status_exit != 0)
 			{

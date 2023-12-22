@@ -18,14 +18,20 @@ char *_getpath(char *command)
 
 	if (strchr(command, '/') != NULL)
 		return (strdup(command));
+	
+	 // Iterate through environment variables to find PATH
 	while (environ[i])
 	{
 		cache = strdup(environ[i]);
 		token = strtok(cache, "=");
+
+		// Check if the current environment variable is PATH
 		if (strcmp(token, "PATH") == 0)
 		{
 			token = strtok(NULL, "=");
 			token = strtok(token, ":");
+
+			// Iterate through PATH directories
 			while (token)
 			{
 				result = malloc(strlen(token) + strlen(command) + 2);
@@ -34,6 +40,8 @@ char *_getpath(char *command)
 					perror("Malloc is NULL");
 					return (NULL);
 				}
+
+				// Concatenate directory with command
 				sprintf(result, "%s/%s", token, command);
 				if (access(result, X_OK) == 0)
 				{
@@ -47,6 +55,8 @@ char *_getpath(char *command)
 		free(cache);
 		i++;
 	}
+
+	// Free memory and return NULL if the command is not found
 	free(command);
 	return (NULL);
 }
