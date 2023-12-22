@@ -13,10 +13,8 @@ void print_env(void)
 {
 	char **env;
 
-	// Loop through the environment variables
 	for (env = environ; *env != NULL; env++)
 	{
-		// Print each environment variable on a new line
 		printf("%s\n", *env);
 	}
 }
