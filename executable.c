@@ -21,6 +21,7 @@ void executeCommand(char *argv[], char *input) {
 		free(argv[0]);  // Clean up memory
 		exit(127);      // Exit with an error status
 	}
+<<<<<<< HEAD
 
 	// Create a new process
 	childProcessID = fork();
@@ -56,6 +57,38 @@ void executeCommand(char *argv[], char *input) {
 			free(input);    // Clean up memory (if applicable)
 			exit(2);        // Exit with an error status
 		}
+=======
+	// Create a child process
+	child = fork();
+
+	if (child == -1)
+	{
+		perror("Fail Fork\n");
+		exit(0);
+	}
+	else if (child == 0)
+	{
+		// Replace the child process image with the new command
+		execve(argv[0], argv, environ);
+		free(argv[0]);
+		exit(0);
+	}
+	else
+	{
+		// Code executed in the parent process
+
+		wait(&status);
+		if (WIFEXITED(status))
+		{
+			// Retrieve the exit status of the child process
+			status_exit = WEXITSTATUS(status);
+			if (status_exit != 0)
+			{
+				free(argv[0]);
+				free(input);
+				exit(2);
+			}
+>>>>>>> a5d7b373f5f2a038cd117c14e56b1146800466d3
 		}
 	}
 }
